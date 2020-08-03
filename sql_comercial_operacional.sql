@@ -16,6 +16,7 @@ SELECT
    ,estoque.cmultvlrnf AS "Custo Brut. Unit"
    ,categoria.categoria AS "Categoria"
    ,estoque.estqloja AS "Estoque"
+   ,entrada.vlritem AS "Vlr Entrada"
    ,estoque.nroempresa AS "Cod. Empresa"
    ,estoque.medvdiageral AS "Média de Venda Diária c/ Promo"
    ,CASE estoque.medvdiageral
@@ -39,6 +40,8 @@ FROM consinco.map_produto produto
            ON produto.seqproduto = preco.seqproduto
      INNER JOIN consinco.mrl_cotacao cotacao
            ON produto.seqfamilia = cotacao.seqfamilia
+     INNER JOIN consinco.maxv_abcentradabase entrada
+           ON produto.seqproduto = entrada.seqproduto
        
 WHERE 
 
