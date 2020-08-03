@@ -1,4 +1,5 @@
 -- 2114 Gonçalves, 1329 Araújo, 3507 Mercale
+-- Última cotação e média de preço das últimas entradas em 2 meses
 -- Codigos das empresas
 --   4:  Maracanã
 --   5: Leblon
