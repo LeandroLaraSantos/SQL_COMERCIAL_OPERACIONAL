@@ -1,4 +1,4 @@
--- Seleciona a descrição dos produtos e suas categorias
+-- 2114 Gonçalves, 1329 Araújo, 3507 Mercale
 -- Codigos das empresas
 --   4:  Maracanã
 --   5: Leblon
@@ -9,6 +9,9 @@ SELECT
    ,produto.desccompleta AS "Descrição"
    ,preco.PrecoNormal AS "Preço Praticado"
    ,preco.PrecoPromoc AS "Preço Promo"
+   ,cotacao.seqconcorrente AS "Cód. Conc."
+   ,cotacao.vlrprecopraticado AS "Pço Conc."
+   ,cotacao.dtapesquisa AS "Data Cotacao."
    ,estoque.cmultvlrnf AS "Custo Brut. Unit"
    ,categoria.categoria AS "Categoria"
    ,estoque.estqloja AS "Estoque"
@@ -33,8 +36,11 @@ FROM consinco.map_produto produto
            ON produto.seqproduto = estoque.seqproduto
      INNER JOIN consinco.mrlv_listaprecopricing preco
            ON produto.seqproduto = preco.seqproduto
+     INNER JOIN consinco.mrl_cotacao cotacao
+           ON produto.seqfamilia = cotacao.seqfamilia
        
 WHERE 
 
      estoque.nroempresa in (4, 5, 6, 50)
- 
+     AND cotacao.seqconcorrente in (1329, 3507)
+     AND cotacao.nroempresa = 5 -- Código empresa Leblon (Cotações)
